@@ -77,22 +77,41 @@ class MainWindow:
         self.canvas = VideoCanvas(master, video_source="background.mp4", audio_source="background_audio.mp3", width=1280, height=720)
         self.canvas.pack(fill="both", expand=True)
 
-        # 创建功能按钮
+        # 创建功能按钮和静音按钮
         button_style = {'font': ('微软雅黑', 14), 'width': 20, 'height': 2}
         btn1 = tk.Button(master, text="1. 滞止参数与气动函数", command=self.open_stagnation, **button_style)
         btn2 = tk.Button(master, text="2. 膨胀波计算", command=self.open_expansion, **button_style)
         btn3 = tk.Button(master, text="3. 激波计算", command=self.open_shockwave, **button_style)
         btn4 = tk.Button(master, text="4. 一维定常管内流动", command=self.open_flow, **button_style)
+        
+        # 添加静音按钮
+        self.mute_button = tk.Button(master, text="静音", command=self.toggle_mute, **{'font': ('微软雅黑', 12)})
+        self.is_muted = False
 
         # 设置按钮位置（田字形）
         btn_width = 200  # 根据按钮宽度调整
         btn_height = 60
         center_x = 1280 // 2
         center_y = 720 // 2
+        
+        # 放置普通功能按钮
         self.canvas.create_window(center_x + btn_width - 40, center_y + btn_height +80, window=btn1)
         self.canvas.create_window(center_x + btn_width + 250, center_y + btn_height + 80, window=btn2)
         self.canvas.create_window(center_x + btn_width - 40, center_y + btn_height + 180, window=btn3)
         self.canvas.create_window(center_x + btn_width + 250, center_y + btn_height + 180, window=btn4)
+        
+        # 放置静音按钮于右上角
+        self.mute_button.place(x=1280-100, y=20)  # 假设按钮宽度大约为100px
+
+    def toggle_mute(self):
+        """ 切换静音状态 """
+        if self.is_muted:
+            pygame.mixer.music.unpause()
+            self.mute_button.config(text="静音")
+        else:
+            pygame.mixer.music.pause()
+            self.mute_button.config(text="取消静音")
+        self.is_muted = not self.is_muted
 
     def open_stagnation(self):
         StagnationWindow(tk.Toplevel(self.master))
