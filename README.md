@@ -3,6 +3,8 @@
 本地运行推荐使用VScode或者Pycharm
 需安装：pip install tk pillow
 pip install pyinstaller
+pip install opencv-python
+……其他库若报错请自行安装
 
 封装exe命令：pyinstaller --onefile --noconfirm --windowed --add-data "background.jpg;." main.py
 通常会存储在同文件夹的dist里面
