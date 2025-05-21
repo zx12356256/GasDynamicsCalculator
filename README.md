@@ -8,6 +8,6 @@ pip install opencv-python
 
 背景视频MP4太大了传不上去，有需要我再单独发
 封装exe命令：
-pyinstaller --onefile --add-data "background.mp4;." --add-data "background_audio.mp3;." main.py
+pyinstaller --onefile --windowed --add-data "background.mp4;." --add-data "background_audio.mp3;." main.py
 （V0版本的）pyinstaller --onefile --noconfirm --windowed --add-data "background.jpg;." V0.py
 通常会存储在同文件夹的dist里面
