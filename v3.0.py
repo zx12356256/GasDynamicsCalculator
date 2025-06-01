@@ -440,7 +440,7 @@ class StagnationWindow:
         self.entry_R4.grid(row=5, column=1, padx=5, pady=5)
         
         # 计算按钮
-        btn_calc = ttk.Button(frame, text="计算滞止参数", command=self.calculate_from_static)
+        btn_calc = ttk.Button(frame, text="计算总参数", command=self.calculate_from_static)
         btn_calc.pack(pady=10)
         
         # 结果显示框架
